@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TheLayout = () => {
+const TheFooter = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const TheLayout = () => {
     );
 };
 
-export default TheLayout;
+export default TheFooter;

@@ -1,13 +1,19 @@
 import React from 'react';
-import {CInput} from "@coreui/react";
 import {Controller} from "react-hook-form";
+import {Input} from "antd";
 
 const TInput = (props) => {
     return (
         <>
             <Controller
                 {...props}
-                as={<CInput/>}
+                defaultValue=''
+                render={(innerProps) => (
+                    <Input
+                        {...props}
+                        {...innerProps}
+                    />
+                )}
             />
         </>
     );

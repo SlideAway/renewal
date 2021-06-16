@@ -1,13 +1,13 @@
 import React from 'react';
 import TInputCollection from "./TInputCollection";
-import {CLabel, CFormGroup} from "@coreui/react";
 import TErrorMessage from "../../atom/error/TErrorMessage";
+import {Form} from "antd";
 
-const TCol = ({item, control, errors}) => {
+const TFormCol = ({item, control, errors}) => {
     return (
         <>
-            <CFormGroup>
-                <CLabel>{item.name}</CLabel>
+            <Form>
+                <Form.Item label={item.label}>
                 <TInputCollection item={item} control={control} rules={{
                     required: item.required ? {
                         value: item.required,
@@ -22,10 +22,11 @@ const TCol = ({item, control, errors}) => {
                         message: `${item.name}의 최댓값은 ${item.min} 입니다. `
                     } : null
                 }}/>
-                {errors[item.name] ? <TErrorMessage message={errors[item.name].message}/> : <></>}
-            </CFormGroup>
+                {errors[item.id] ? <TErrorMessage message={errors[item.id].message}/> : <></>}
+                </Form.Item>
+            </Form>
         </>
     );
 };
 
-export default TCol;
+export default TFormCol;
