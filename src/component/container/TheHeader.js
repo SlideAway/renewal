@@ -1,9 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Header} from "antd/lib/layout/layout";
 import styled from "styled-components";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from "react-icons/ai";
 import jwtDecode from "jwt-decode";
 import moment from "moment";
+import PropTypes from 'prop-types';
 
 const CustomHeader = styled(Header)`
   padding: 0;
@@ -63,6 +64,10 @@ const TheHeader = ({toggle, setToggle}) => {
             </CustomHeader>
         </>
     );
+};
+
+TheHeader.propTypes = {
+
 };
 
 export default TheHeader;
