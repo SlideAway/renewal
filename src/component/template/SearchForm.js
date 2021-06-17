@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DataGrid = props => {
+const SearchForm = props => {
+    const {form} = props;
     return (
         <div>
 
@@ -9,8 +10,8 @@ const DataGrid = props => {
     );
 };
 
-DataGrid.propTypes = {
+SearchForm.propTypes = {
 
 };
 
-export default DataGrid;
+export default SearchForm;
