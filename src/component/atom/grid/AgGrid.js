@@ -10,7 +10,7 @@ const AgGrid = props => {
 };
 
 AgGrid.propTypes = {
-    
+
 };
 
 export default AgGrid;
