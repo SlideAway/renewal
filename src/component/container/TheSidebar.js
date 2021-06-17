@@ -4,7 +4,6 @@ import {Menu as AntMenu, Layout,} from "antd";
 import styled, {css} from "styled-components";
 import useAxios from "../../utils/hooks/useAxios";
 import {FaAngleDoubleLeft, GoPrimitiveDot, ImNewTab, IoEnterOutline} from "react-icons/all";
-import * as AntIcon from 'react-icons/ai';
 import {Link, useHistory} from "react-router-dom";
 import {ContextMenu2} from "@blueprintjs/popover2";
 import {Menu, MenuItem} from "@blueprintjs/core";
@@ -37,7 +36,7 @@ const TheSidebar = ({toggle, setToggle}) => {
     const history = useHistory();
 
     const successMenu = useCallback((res) => {
-        setMenus(res && res.data);
+        setMenus(res && res.data)
     }, [])
 
     useEffect(() => {
@@ -86,9 +85,9 @@ const TheSidebar = ({toggle, setToggle}) => {
                     <div className="logo"/>
                     <AntMenu mode='inline' theme='dark'>
                         {menus && menus.map((item, index) => {
-                            const antIconElement = AntIcon[item.icon];
+                            // const antIconElement = AntIcon[item.icon];
                             return (
-                                <SubMenu key={index} icon={React.createElement(antIconElement)} title={item.name}>
+                                <SubMenu key={index}  title={item.name}>
                                     {item._children && item._children.map((child, childIndex) => (
                                         <AntMenu.Item
                                             key={`${index}-${childIndex}`}
