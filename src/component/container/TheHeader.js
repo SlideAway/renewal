@@ -35,7 +35,7 @@ const getRemaining = (timestamp) => {
     return {minute, second}
 }
 
-const decodedToken = jwtDecode(localStorage.getItem('token'))
+const decodedToken = localStorage.getItem('token') ? jwtDecode(localStorage.getItem('token')) : ''
 
 const TheHeader = ({toggle, setToggle}) => {
     const [time, setTime] = useState(getRemaining(decodedToken && decodedToken.exp));
