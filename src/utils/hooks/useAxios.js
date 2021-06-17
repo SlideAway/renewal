@@ -21,11 +21,9 @@ const useAxios = (props={
         setLoading(true)
         axios(config)
             .then(data => {
-                setLoading(false)
-                succHandler(data)
+                if(succHandler) succHandler(data)
             })
             .catch(error => {
-                setLoading(false)
                 if(props && props.useModal !== false){
                     MySwal.fire({
                         title:'정보처리에러',
@@ -34,6 +32,7 @@ const useAxios = (props={
                 }
                 if(failHandler) failHandler(error);
             })
+            .finally(() => setLoading(false))
     }, [])
 
     return {loading, submit};
