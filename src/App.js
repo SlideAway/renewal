@@ -13,6 +13,10 @@ const Login = React.lazy(() => import('./pages/common/Login'));
 function App() {
     const loading = (<div></div>)
 
+    //텍스트 드래그 방지
+    window.addEventListener('selectstart', (e) => e.preventDefault());
+    //마우스 우클릭 메뉴 방지
+    window.addEventListener('contextmenu', (e) => e.preventDefault());
 
     return (
         <>
