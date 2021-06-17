@@ -29,7 +29,6 @@ const Login = () => {
     }, [])
 
     const onLogin = (data) => {
-        console.log(errors);
         const formData = new FormData();
         Object.keys(data).forEach(item => formData.append(item, data[item]))
         const config = {
