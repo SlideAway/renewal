@@ -35,22 +35,19 @@ const getRemaining = (timestamp) => {
     return {minute, second}
 }
 
-const decodedToken = localStorage.getItem('token') ? jwtDecode(localStorage.getItem('token')) : ''
-
 const TheHeader = ({toggle, setToggle}) => {
-    const [time, setTime] = useState(getRemaining(decodedToken && decodedToken.exp));
+    const [time, setTime] = useState();
     const reverseToggle = useCallback(() => {
         setToggle(!toggle);
     }, [toggle])
 
-    setInterval(() => {
-        setTime(getRemaining(decodedToken && decodedToken.exp));
-    }, 1000)
+    const token = localStorage.getItem('token');
+    const decodedToken = token ? jwtDecode(token) : '';
 
-
-    useEffect(() => {
-
-    }, [])
+    if (decodedToken)
+        setInterval(() => {
+            setTime(getRemaining(decodedToken && decodedToken.exp));
+        }, 1000)
 
     return (
         <>
@@ -60,8 +57,8 @@ const TheHeader = ({toggle, setToggle}) => {
                     onClick: reverseToggle
                 })}
                 <ProfileHeader>
-                    {time && time.minute ? `${time.minute}분` : ''}
-                    {`${time && time.second}초`}
+                    {time && time.minute >= 0 ? `${time.minute}분` : ''}
+                    {time && time.second >= 0 ? `${time.second}초` : ''}
                 </ProfileHeader>
             </CustomHeader>
         </>
