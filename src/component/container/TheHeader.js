@@ -5,6 +5,8 @@ import {AiOutlineMenuUnfold, AiOutlineMenuFold} from "react-icons/ai";
 import jwtDecode from "jwt-decode";
 import moment from "moment";
 import PropTypes from 'prop-types';
+import TheHeaderAuth from "./header/TheHeaderAuth";
+import TheHeaderExtend from "./header/TheHeaderExtend";
 
 const CustomHeader = styled(Header)`
   padding: 0;
@@ -25,30 +27,17 @@ const CustomHeader = styled(Header)`
 
 const ProfileHeader = styled.div`
   float: right;
+  margin-right:20px;
+  li {
+    display:inline-block;
+    margin-right:5px;
+    }
 `
 
-const getRemaining = (timestamp) => {
-    const timeObj = moment.unix(timestamp);
-    const now = moment();
-
-    const minute = parseInt(moment.duration(timeObj.diff(now)).minutes());
-    const second = parseInt(moment.duration(timeObj.diff(now)).seconds());
-    return {minute, second}
-}
-
 const TheHeader = ({toggle, setToggle}) => {
-    const [time, setTime] = useState();
     const reverseToggle = useCallback(() => {
         setToggle(!toggle);
     }, [toggle])
-
-    const token = localStorage.getItem('token');
-    const decodedToken = token ? jwtDecode(token) : '';
-
-    if (decodedToken)
-        setInterval(() => {
-            setTime(getRemaining(decodedToken && decodedToken.exp));
-        }, 1000)
 
     return (
         <>
@@ -58,16 +47,14 @@ const TheHeader = ({toggle, setToggle}) => {
                     onClick: reverseToggle
                 })}
                 <ProfileHeader>
-                    {time && time.minute >= 0 ? `${time.minute}분` : ''}
-                    {time && time.second >= 0 ? `${time.second}초` : ''}
+                    <TheHeaderAuth/>
+                    <TheHeaderExtend/>
                 </ProfileHeader>
             </CustomHeader>
         </>
     );
 };
 
-TheHeader.propTypes = {
-
-};
+TheHeader.propTypes = {};
 
 export default TheHeader;
