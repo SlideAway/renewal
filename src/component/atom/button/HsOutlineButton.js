@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TButtonOutlined = () => {
+const HsOutlineButton = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const TButtonOutlined = () => {
     );
 };
 
-export default TButtonOutlined;
+export default HsOutlineButton;

@@ -1,14 +1,14 @@
 import React from 'react';
-import TInputCollection from "./TInputCollection";
-import TErrorMessage from "../../atom/error/TErrorMessage";
+import HsInputCollection from "./HsInputCollection";
+import HsErrorMessage from "../../atom/error/HsErrorMessage";
 import {Form} from "antd";
 
-const TFormCol = ({item, control, errors}) => {
+const HsFormCol = ({item, control, errors}) => {
     return (
         <>
             <Form>
                 <Form.Item label={item.label}>
-                <TInputCollection item={item} control={control} rules={{
+                <HsInputCollection item={item} control={control} rules={{
                     required: item.required ? {
                         value: item.required,
                         message: `${item.name}은 필수값입니다. `
@@ -22,11 +22,11 @@ const TFormCol = ({item, control, errors}) => {
                         message: `${item.name}의 최댓값은 ${item.min} 입니다. `
                     } : null
                 }}/>
-                {errors[item.id] ? <TErrorMessage message={errors[item.id].message}/> : <></>}
+                {errors[item.id] ? <HsErrorMessage message={errors[item.id].message}/> : <></>}
                 </Form.Item>
             </Form>
         </>
     );
 };
 
-export default TFormCol;
+export default HsFormCol;

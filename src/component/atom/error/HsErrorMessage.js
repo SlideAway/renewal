@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-const TErrorMessage = ({message}) => {
+const HsErrorMessage = ({message}) => {
 
     const Error = styled.div`
       color: #ff6d6d;
@@ -14,4 +14,4 @@ const TErrorMessage = ({message}) => {
     );
 };
 
-export default TErrorMessage;
+export default HsErrorMessage;

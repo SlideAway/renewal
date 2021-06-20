@@ -2,7 +2,7 @@ import React from 'react';
 import {Controller} from "react-hook-form";
 import {Input} from "antd";
 
-const TInput = (props) => {
+const HsInput = (props) => {
     return (
         <>
             <Controller
@@ -19,4 +19,4 @@ const TInput = (props) => {
     );
 };
 
-export default TInput;
+export default HsInput;

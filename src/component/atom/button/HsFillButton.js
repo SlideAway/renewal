@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Button} from "antd";
 
-const FilledButton = props => {
+const HsFillButton = props => {
     return (
         <div>
 
@@ -10,8 +10,8 @@ const FilledButton = props => {
     );
 };
 
-FilledButton.propTypes = {
+HsFillButton.propTypes = {
 
 };
 
-export default FilledButton;
+export default HsFillButton;

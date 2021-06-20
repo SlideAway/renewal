@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card} from "antd";
 
-const TCard = (props) => {
+const HsCard = (props) => {
     return (
         <Card {...props}>
             {props.children}
@@ -9,4 +9,4 @@ const TCard = (props) => {
     );
 };
 
-export default TCard;
+export default HsCard;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {}
-const TProgress = () => {
+const HsProgress = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const TProgress = () => {
     );
 };
 
-export default TProgress;
+export default HsProgress;

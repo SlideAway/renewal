@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row} from "antd";
 
-const TRow = (props) => {
+const HsRow = (props) => {
     return (
         <Row {...props}>
             {props.children}
@@ -9,8 +9,8 @@ const TRow = (props) => {
     );
 };
 
-TRow.propTypes = {
+HsRow.propTypes = {
 
 };
 
-export default TRow;
+export default HsRow;

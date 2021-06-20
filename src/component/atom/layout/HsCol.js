@@ -1,7 +1,7 @@
 import React from 'react';
 import {CCol} from "@coreui/react";
 
-const TCol = (props) => {
+const HsCol = (props) => {
     return (
         <CCol>
             {props.children}
@@ -9,4 +9,4 @@ const TCol = (props) => {
     );
 };
 
-export default TCol;
+export default HsCol;

@@ -1,12 +1,12 @@
 import React, {useCallback} from 'react';
 import {useForm} from "react-hook-form";
-import TFormCol from "../../component/mole/form/TFormCol";
-import TCard from "../../component/atom/card/TCard";
+import HsFormCol from "../../component/mole/form/HsFormCol";
+import HsCard from "../../component/atom/card/HsCard";
 import styled from "styled-components";
-import TButton from "../../component/atom/button/TButton";
+import TButton from "../../component/atom/button/HsButton";
 import useAxios from "../../utils/hooks/useAxios";
 import {useHistory} from 'react-router-dom';
-const LoginCard = styled(TCard)({
+const LoginCard = styled(HsCard)({
     marginTop: '20% !important',
     marginLeft: '30% !important',
     marginRight: '30% !important'
@@ -42,18 +42,18 @@ const Login = () => {
     return (
         <>
             <LoginCard title='SITEMAN'>
-                <TFormCol item={{
+                <HsFormCol item={{
                     name: 'ID', id: 'username', required: true,
                     placeholder: 'ID'
                 }}
-                          control={control}
-                          errors={errors}/>
-                <TFormCol item={{
+                           control={control}
+                           errors={errors}/>
+                <HsFormCol item={{
                     name: '비밀번호', id: 'password', type: 'password', required: true,
                     placeholder:'Password'
                 }}
-                          control={control}
-                          errors={errors}/>
+                           control={control}
+                           errors={errors}/>
                 <TButton onClick={handleSubmit(onLogin)} loading={loading}>로그인</TButton>
             </LoginCard>
         </>

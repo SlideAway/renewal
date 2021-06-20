@@ -39,13 +39,13 @@ const useAxios = (props={
 };
 
 useAxios.defaultProps = {
-    useModal:true
+    useModal:true,
+    loading:false
 }
 
 useAxios.propTypes = {
-    props: {
-        useModal:PropTypes.bool
-    }
+    useModal:PropTypes.bool,
+    loading:PropTypes.bool
 };
 export default useAxios;
 

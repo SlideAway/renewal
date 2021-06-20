@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TSelect = () => {
+const HsSelect = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const TSelect = () => {
     );
 };
 
-export default TSelect;
+export default HsSelect;

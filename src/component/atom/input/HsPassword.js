@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Input, Tooltip} from "antd";
 import {Controller} from "react-hook-form";
 
-const TPassword = (props) => {
+const HsPassword = (props) => {
     const [capslock, setCapslock] = useState(false);
     const [focus, setFocus] = useState(false);
 
@@ -31,8 +31,8 @@ const TPassword = (props) => {
     );
 };
 
-TPassword.propTypes = {
+HsPassword.propTypes = {
 
 };
 
-export default TPassword;
+export default HsPassword;

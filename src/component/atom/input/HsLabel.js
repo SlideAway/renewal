@@ -1,7 +1,7 @@
 import React from 'react';
 import {CLabel} from "@coreui/react";
 
-const TLabel = ({name}) => {
+const HsLabel = ({name}) => {
 
     return (
         <>
@@ -10,4 +10,4 @@ const TLabel = ({name}) => {
     );
 };
 
-export default TLabel;
+export default HsLabel;

@@ -23,7 +23,7 @@ import * as cg from 'react-icons/cg';
 import * as vsc from 'react-icons/vsc';
 
 
-const TIcons = ({name}) => {
+const Icons = ({name}) => {
     const style = {
         marginRight:'5px'
     }
@@ -74,8 +74,8 @@ const TIcons = ({name}) => {
     }
 };
 
-TIcons.propTypes = {
+Icons.propTypes = {
 
 };
 
-export default TIcons;
+export default Icons;

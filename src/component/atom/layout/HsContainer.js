@@ -2,7 +2,7 @@ import React from 'react';
 import {Layout} from "antd";
 
 
-const TContainer = (props) => {
+const HsContainer = (props) => {
     return (
         <Layout>
             {props.children}
@@ -11,4 +11,4 @@ const TContainer = (props) => {
     );
 };
 
-export default TContainer;
+export default HsContainer;
