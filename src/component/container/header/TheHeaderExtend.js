@@ -19,32 +19,14 @@ const TheHeaderExtendRoot = styled.li`
       transform: rotate(-180deg);
     }
   }
-  
-  &:visited {
-  ${({loading}) => loading ? css`rotate(-360deg)`:''}
-  }
 
 `
 
-const TheHeaderExtend = props => {
-    const {submit, loading} = useAxios({
-        useModal:false
-    });
+const TheHeaderExtend = ({remainingLoading}) => {
 
-    const extend = () => {
-        const config = {
-            url:'/jwt',
-            method:'get'
-        }
-
-        submit(config, (data) => {
-            localStorage.setItem('token', data && data.data.data.token);
-        })
-    }
 
     return (
-        <TheHeaderExtendRoot loading={loading}>
-            <HsButton icon='MdAutorenew' type='text' onClick={extend}>로그인 연장</HsButton>
+        <TheHeaderExtendRoot>
         </TheHeaderExtendRoot>
     );
 };

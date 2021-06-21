@@ -48,7 +48,6 @@ const TheHeader = ({toggle, setToggle}) => {
                 })}
                 <ProfileHeader>
                     <TheHeaderAuth/>
-                    <TheHeaderExtend/>
                 </ProfileHeader>
             </CustomHeader>
         </>
