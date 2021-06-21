@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Header} from "antd/lib/layout/layout";
 import styled from "styled-components";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from "react-icons/ai";
@@ -7,6 +7,8 @@ import moment from "moment";
 import PropTypes from 'prop-types';
 import TheHeaderAuth from "./header/TheHeaderAuth";
 import TheHeaderExtend from "./header/TheHeaderExtend";
+import {ButtonGroup, Divider} from "@blueprintjs/core";
+import TheHeaderProfile from "./header/TheHeaderProfile";
 
 const CustomHeader = styled(Header)`
   padding: 0;
@@ -28,16 +30,25 @@ const CustomHeader = styled(Header)`
 const ProfileHeader = styled.div`
   float: right;
   margin-right:20px;
-  li {
-    display:inline-block;
-    margin-right:5px;
-    }
+  //li {
+  //  display:inline-block;
+  //  margin-right:5px;
+  //  }
 `
 
 const TheHeader = ({toggle, setToggle}) => {
+    const [decodedToken, setDecodedToken] = useState({});
+
+
     const reverseToggle = useCallback(() => {
         setToggle(!toggle);
     }, [toggle])
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if(token)
+            setDecodedToken(jwtDecode(token));
+    }, [])
 
     return (
         <>
@@ -47,7 +58,12 @@ const TheHeader = ({toggle, setToggle}) => {
                     onClick: reverseToggle
                 })}
                 <ProfileHeader>
-                    <TheHeaderAuth/>
+                    <ButtonGroup minimal>
+                        <TheHeaderAuth decodedToken={decodedToken} />
+                        <TheHeaderExtend/>
+                        <Divider/>
+                        <TheHeaderProfile/>
+                    </ButtonGroup>
                 </ProfileHeader>
             </CustomHeader>
         </>

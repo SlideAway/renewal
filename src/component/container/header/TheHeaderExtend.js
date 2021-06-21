@@ -5,7 +5,7 @@ import styled, {css} from "styled-components";
 import useAxios from "../../../utils/hooks/useAxios";
 
 
-const TheHeaderExtendRoot = styled.li`
+const TheHeaderExtendButton = styled(HsButton)`
   & {
     svg {
       transition: all 0.7s;
@@ -19,15 +19,28 @@ const TheHeaderExtendRoot = styled.li`
       transform: rotate(-180deg);
     }
   }
-
 `
 
-const TheHeaderExtend = ({remainingLoading}) => {
+const TheHeaderExtend = () => {
+    const {submit, loading} = useAxios({
+        useModal: false
+    });
 
+    const extend = () => {
+        const config = {
+            url: '/jwt',
+            method: 'get'
+        }
+
+        submit(config, (data) => {
+            localStorage.setItem('token', data && data.data.data.token);
+        })
+    }
 
     return (
-        <TheHeaderExtendRoot>
-        </TheHeaderExtendRoot>
+        <TheHeaderExtendButton loading={loading} icon='MdAutorenew' type='text' onClick={extend}>
+            로그인 연장
+        </TheHeaderExtendButton>
     );
 };
 

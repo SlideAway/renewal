@@ -9,10 +9,12 @@ import {useHistory} from "react-router-dom";
 import {ContextMenu2} from "@blueprintjs/popover2";
 import {Menu, MenuItem} from "@blueprintjs/core";
 import {TiArrowBackOutline} from "react-icons/all";
+import TheFooter from "./TheFooter";
 
 const RootLayout = styled(Layout)`
-  width: auto;
+  width: 100%;
   height: auto;
+  margin:auto;
 
   .site-layout-background {
     background-color: white;
@@ -62,6 +64,7 @@ const TheLayout = () => {
                         <SubrootLayout className='site-layout' toggle={toggle.toString()}>
                             <TheHeader toggle={toggle} setToggle={setToggle}/>
                             <TheContent/>
+                            <TheFooter/>
                         </SubrootLayout>
                     </RootLayout>
                 </ContextMenu2>

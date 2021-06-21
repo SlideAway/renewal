@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch} from "react-router-dom";
 import routes from "../../routes";
-import {Content} from "antd/es/layout/layout";
+import {Layout} from "antd";
 import styled from "styled-components";
+const {Content} = Layout
 
 const CustomContent = styled(Content)`
-    margin:24px 16px;
-    padding:24px;
-    min-height:100vh;
+    margin:24px 16px 0;
+    //padding:24px;
+    min-height:360px;
 `
 
 const TheContent = () => {

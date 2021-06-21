@@ -7,8 +7,7 @@ const HsButton = (props) => {
     const {icon, children, size, type, loading} = props
 
     return (
-        <Button {...props} type={type} loading={loading} size={size} icon={<></>}>
-            <Icons name={icon}/>
+        <Button {...props} type={type} loading={loading} size={size} icon={<Icons name={icon}/>}>
             {children}
         </Button>
     );
