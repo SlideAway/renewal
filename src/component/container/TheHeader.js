@@ -9,6 +9,7 @@ import TheHeaderAuth from "./header/TheHeaderAuth";
 import TheHeaderExtend from "./header/TheHeaderExtend";
 import {ButtonGroup, Divider} from "@blueprintjs/core";
 import TheHeaderProfile from "./header/TheHeaderProfile";
+import HeaderContext, {HeaderProvider} from "../../utils/contexts/HeaderContext";
 
 const CustomHeader = styled(Header)`
   padding: 0;
@@ -29,7 +30,7 @@ const CustomHeader = styled(Header)`
 
 const ProfileHeader = styled.div`
   float: right;
-  margin-right:20px;
+  margin-right: 20px;
   //li {
   //  display:inline-block;
   //  margin-right:5px;
@@ -37,35 +38,28 @@ const ProfileHeader = styled.div`
 `
 
 const TheHeader = ({toggle, setToggle}) => {
-    const [decodedToken, setDecodedToken] = useState({});
-
-
     const reverseToggle = useCallback(() => {
         setToggle(!toggle);
     }, [toggle])
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if(token)
-            setDecodedToken(jwtDecode(token));
-    }, [])
-
     return (
         <>
-            <CustomHeader className="site-layout-background">
-                {React.createElement(toggle ? AiOutlineMenuUnfold : AiOutlineMenuFold, {
-                    className: 'trigger',
-                    onClick: reverseToggle
-                })}
-                <ProfileHeader>
-                    <ButtonGroup minimal>
-                        <TheHeaderAuth decodedToken={decodedToken} />
-                        <TheHeaderExtend/>
-                        <Divider/>
-                        <TheHeaderProfile/>
-                    </ButtonGroup>
-                </ProfileHeader>
-            </CustomHeader>
+            <HeaderProvider>
+                <CustomHeader className="site-layout-background">
+                    {React.createElement(toggle ? AiOutlineMenuUnfold : AiOutlineMenuFold, {
+                        className: 'trigger',
+                        onClick: reverseToggle
+                    })}
+                    <ProfileHeader>
+                        <ButtonGroup minimal>
+                            <TheHeaderAuth/>
+                            <TheHeaderExtend/>
+                            <Divider/>
+                            <TheHeaderProfile/>
+                        </ButtonGroup>
+                    </ProfileHeader>
+                </CustomHeader>
+            </HeaderProvider>
         </>
     );
 };
