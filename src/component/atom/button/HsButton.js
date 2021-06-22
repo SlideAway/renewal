@@ -28,7 +28,6 @@ HsButton.defaultProps = {
     title:'',
     size:'default',
     type:'default',
-    shape:'',
     loading:false
 }
 

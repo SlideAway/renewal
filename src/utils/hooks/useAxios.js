@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import PropTypes from "prop-types";
 
-const useAxios = ({useModal=true, useLoading=false, useApi=true}) => {
+const useAxios = ({useModal=true, useLoading=false, useApi=true} = {}) => {
     const [loading, setLoading] = useState(useLoading);
     const MySwal = withReactContent(Swal);
 

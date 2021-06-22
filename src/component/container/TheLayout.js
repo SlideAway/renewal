@@ -3,13 +3,14 @@ import TheSidebar from "./TheSidebar";
 import TheContent from "./TheContent";
 import TheHeader from "./TheHeader";
 import styled, {css} from "styled-components";
-import {Layout, Spin} from "antd";
+import {Layout} from "antd";
 import useAxios from "../../utils/hooks/useAxios";
 import {useHistory} from "react-router-dom";
 import {ContextMenu2} from "@blueprintjs/popover2";
 import {Menu, MenuItem} from "@blueprintjs/core";
 import {TiArrowBackOutline} from "react-icons/all";
 import TheFooter from "./TheFooter";
+import HsSpinner from "../atom/progress/HsSpinner";
 
 const RootLayout = styled(Layout)`
   width: 100%;
@@ -53,7 +54,7 @@ const TheLayout = () => {
 
     return (
         <>
-            <Spin tip='loading...' spinning={loading}>
+            <HsSpinner loading={loading}>
                 <ContextMenu2 content={
                     <Menu>
                         <MenuItem text='뒤로' onClick={history.goBack} icon={<TiArrowBackOutline/>} />
@@ -68,7 +69,7 @@ const TheLayout = () => {
                         </SubrootLayout>
                     </RootLayout>
                 </ContextMenu2>
-            </Spin>
+            </HsSpinner>
         </>
     );
 
