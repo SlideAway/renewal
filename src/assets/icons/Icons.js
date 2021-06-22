@@ -25,7 +25,8 @@ import * as vsc from 'react-icons/vsc';
 
 const Icons = ({name}) => {
     const style = {
-        marginRight:'5px'
+        marginRight:'5px',
+        marginLeft:'5px'
     }
     if(Object.keys(bs).includes(name))
         return  React.createElement(bs[name], {style:style});
@@ -75,7 +76,11 @@ const Icons = ({name}) => {
 };
 
 Icons.propTypes = {
-
+    name:PropTypes.string
 };
+
+Icons.defaultProps = {
+    name:''
+}
 
 export default Icons;
