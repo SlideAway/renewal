@@ -10,6 +10,7 @@ import TheHeaderExtend from "./header/TheHeaderExtend";
 import {ButtonGroup, Divider} from "@blueprintjs/core";
 import TheHeaderProfile from "./header/TheHeaderProfile";
 import HeaderContext, {HeaderProvider} from "../../utils/contexts/HeaderContext";
+import TheHeaderNotification from "./header/TheHeaderNoti";
 
 const CustomHeader = styled(Header)`
   padding: 0;
@@ -56,6 +57,7 @@ const TheHeader = ({toggle, setToggle}) => {
                             <TheHeaderExtend/>
                             <Divider/>
                             <TheHeaderProfile/>
+                            <TheHeaderNotification/>
                         </ButtonGroup>
                     </ProfileHeader>
                 </CustomHeader>

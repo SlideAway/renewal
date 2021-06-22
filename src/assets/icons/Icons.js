@@ -25,6 +25,7 @@ import * as vsc from 'react-icons/vsc';
 
 const Icons = ({name}) => {
     const style = {
+        marginTop:'5px',
         marginRight:'5px',
         marginLeft:'5px'
     }

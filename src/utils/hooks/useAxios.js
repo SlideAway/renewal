@@ -4,33 +4,30 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import PropTypes from "prop-types";
 
-const useAxios = (props={
-    useModal:true,
-    loading:false
-}) => {
-    const [loading, setLoading] = useState(props.loading);
+const useAxios = ({useModal=true, useLoading=false, useApi=true}) => {
+    const [loading, setLoading] = useState(useLoading);
     const MySwal = withReactContent(Swal);
 
     const submit = useCallback((config, succHandler, failHandler) => {
-        if(localStorage.getItem('token'))
+        if (localStorage.getItem('token'))
             config.headers = {
-            ...config.headers,
-            'X-Auth-Token': localStorage.getItem('token')
+                ...config.headers,
+                'X-Auth-Token': localStorage.getItem('token')
             }
-        config.url = `/api${config.url}`
+        if (useApi) config.url = `/api${config.url}`
         setLoading(true)
         axios(config)
             .then(data => {
-                if(succHandler) succHandler(data)
+                if (succHandler) succHandler(data)
             })
             .catch(error => {
-                if(props && props.useModal !== false){
+                if (useModal !== false) {
                     MySwal.fire({
-                        title:'정보처리에러',
-                        text:`${error.response.status}`
+                        title: '정보처리에러',
+                        text: `${error.response.status}`
                     })
                 }
-                if(failHandler) failHandler(error);
+                if (failHandler) failHandler(error);
             })
             .finally(() => setLoading(false))
     }, [])
@@ -39,13 +36,15 @@ const useAxios = (props={
 };
 
 useAxios.defaultProps = {
-    useModal:true,
-    loading:false
+    useModal: true,
+    useApi: true,
+    useLoading: false
 }
 
 useAxios.propTypes = {
-    useModal:PropTypes.bool,
-    loading:PropTypes.bool
+    useModal: PropTypes.bool,
+    useApi: PropTypes.bool,
+    useLoading: PropTypes.bool
 };
 export default useAxios;
 

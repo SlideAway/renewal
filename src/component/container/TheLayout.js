@@ -31,7 +31,7 @@ const SubrootLayout = styled(Layout)`
           `}
 `
 const TheLayout = () => {
-    const {submit, loading} = useAxios({useModal: false, loading: true});
+    const {submit, loading} = useAxios({useModal: false, useLoading: true});
     const [toggle, setToggle] = useState(true);
     const history = useHistory();
 
