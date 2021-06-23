@@ -4,10 +4,10 @@ import Icons from "../../../assets/icons/Icons";
 import PropTypes from 'prop-types';
 
 const HsButton = (props) => {
-    const {icon, children, size, type, loading, title, shape} = props
+    const {icon, children} = props
 
     return (
-        <Button {...props} type={type} shape={shape} title={title} loading={loading} size={size} icon={<Icons name={icon}/>}>
+        <Button {...props} icon={<Icons name={icon}/>}>
             {children}
         </Button>
     );
@@ -21,6 +21,7 @@ HsButton.propTypes = {
     type:PropTypes.oneOf(['primary', 'default', 'danger', 'text']),
     shape:PropTypes.oneOf(['circle', 'round']),
     loading:PropTypes.bool,
+    disabled:PropTypes.bool
 };
 
 HsButton.defaultProps = {
@@ -28,7 +29,8 @@ HsButton.defaultProps = {
     title:'',
     size:'default',
     type:'default',
-    loading:false
+    loading:false,
+    disabled:false
 }
 
 export default HsButton;
