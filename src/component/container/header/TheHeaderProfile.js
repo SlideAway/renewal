@@ -6,18 +6,30 @@ import jwtDecode from "jwt-decode";
 import Icons from "../../../assets/icons/Icons";
 import ProfileDialog from "../../template/dialog/ProfileDialog";
 import PasswordDialog from "../../template/dialog/PasswordDialog";
-
-const doLogout = () => {
-
-}
+import {useAlert} from "../../../utils/hooks/useAlert";
+import {useHistory} from "react-router-dom";
 
 const TheHeaderProfile = () => {
     const context = useContext(HeaderContext);
-    const {state} = context;
+    const {state, actions} = context;
     const {token} = state;
+    const {setToken} = actions;
     const decodedToken = token ? jwtDecode(token) : '';
     const [showProfile, setShowProfile] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const {showAlert} = useAlert();
+    const history = useHistory();
+
+    const confirmLogout = () => {
+        showAlert('info', '로그아웃 하시겠습니까?', () => doLogout())
+    }
+
+    const doLogout = () => {
+        localStorage.removeItem('token');
+        //context에서 처리할수 있지 않을까?
+        setToken('');
+        history.push('/login')
+    }
 
     const ProfileDropdown = () => (
         <Menu>
@@ -27,7 +39,7 @@ const TheHeaderProfile = () => {
             <Menu.Item icon={<Icons name='BiKey'/>} onClick={() => setShowPassword(true)}>
                 비밀번호 수정
             </Menu.Item>
-            <Menu.Item danger icon={<Icons name='HiOutlineLogout'/>} onClick={doLogout}>
+            <Menu.Item danger icon={<Icons name='HiOutlineLogout'/>} onClick={confirmLogout}>
                 로그아웃
             </Menu.Item>
         </Menu>
