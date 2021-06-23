@@ -12,11 +12,11 @@ const HsDialogBody = (props) => {
 };
 
 HsDialogBody.defaultProps = {
-    content:<></>
+    children:<></>
 }
 
 HsDialogBody.propTypes = {
-    content:PropTypes.element
+    children:PropTypes.element
 };
 
 export default HsDialogBody;
