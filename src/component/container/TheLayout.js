@@ -14,8 +14,8 @@ import HsSpinner from "../atom/progress/HsSpinner";
 
 const RootLayout = styled(Layout)`
   width: 100%;
-  height: auto;
-  margin:auto;
+  height: 100vh;
+  margin: auto;
 
   .site-layout-background {
     background-color: white;
@@ -24,8 +24,8 @@ const RootLayout = styled(Layout)`
 
 const SubrootLayout = styled(Layout)`
   transition: all 0.2s;
-  ${({toggle})=>
-          toggle!=='true' ? css`
+  ${({toggle}) =>
+          toggle !== 'true' ? css`
             margin-left: 200px;
           ` : css`
             margin-left: 80px
@@ -36,11 +36,11 @@ const TheLayout = () => {
     const [toggle, setToggle] = useState(true);
     const history = useHistory();
 
-    const onSuccess = useCallback((res) => {
+    const onSuccess = useCallback(() => {
 
     }, [])
 
-    const onFailure = useCallback((error) => {
+    const onFailure = useCallback(() => {
         history.push('/login');
     }, [])
 
@@ -52,24 +52,27 @@ const TheLayout = () => {
         submit(config, onSuccess, onFailure);
     }, [])
 
+    if (loading) return (
+        <RootLayout>
+            <HsSpinner style={{marginTop:'40vh'}} loading={loading}/>
+        </RootLayout>
+    )
     return (
         <>
-            <HsSpinner loading={loading}>
-                <ContextMenu2 content={
-                    <Menu>
-                        <MenuItem text='뒤로' onClick={history.goBack} icon={<TiArrowBackOutline/>} />
-                    </Menu>
-                } >
-                    <RootLayout>
-                        <TheSidebar toggle={toggle} setToggle={setToggle}/>
-                        <SubrootLayout className='site-layout' toggle={toggle.toString()}>
-                            <TheHeader toggle={toggle} setToggle={setToggle}/>
-                            <TheContent/>
-                            <TheFooter/>
-                        </SubrootLayout>
-                    </RootLayout>
-                </ContextMenu2>
-            </HsSpinner>
+            <ContextMenu2 content={
+                <Menu>
+                    <MenuItem text='뒤로' onClick={history.goBack} icon={<TiArrowBackOutline/>}/>
+                </Menu>
+            }>
+                <RootLayout>
+                    <TheSidebar toggle={toggle} setToggle={setToggle}/>
+                    <SubrootLayout className='site-layout' toggle={toggle.toString()}>
+                        <TheHeader toggle={toggle} setToggle={setToggle}/>
+                        <TheContent/>
+                        <TheFooter/>
+                    </SubrootLayout>
+                </RootLayout>
+            </ContextMenu2>
         </>
     );
 
