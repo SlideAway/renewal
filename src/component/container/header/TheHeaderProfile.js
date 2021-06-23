@@ -1,6 +1,4 @@
 import React, {useContext, useState} from 'react';
-import PropTypes from 'prop-types';
-import styled from "styled-components";
 import {Dropdown, Menu} from "antd";
 import HsButton from "../../atom/button/HsButton";
 import HeaderContext from "../../../utils/contexts/HeaderContext";
@@ -55,7 +53,7 @@ const TheHeaderProfile = () => {
                     <Icons name='BsChevronDown'/>
                 </HsButton>
             </Dropdown>
-            <ProfileDialog show={showProfile} setShow={setShowProfile}/>
+            <ProfileDialog userInfo={decodedToken} show={showProfile} setShow={setShowProfile}/>
         </>
     );
 };

@@ -4,8 +4,8 @@ import {Classes} from "@blueprintjs/core";
 import HsButton from "../button/HsButton";
 import {Space} from "antd";
 
-const HsDialogFooter = ({setShow}, props) => {
-    const {children} = props;
+const HsDialogFooter = (props) => {
+    const {setShow, children} = props;
     return (
         <div className={Classes.DIALOG_FOOTER}>
             <Space>
@@ -17,11 +17,11 @@ const HsDialogFooter = ({setShow}, props) => {
 };
 
 HsDialogFooter.defaultProps = {
-    content: <></>
+    children: <></>
 }
 
 HsDialogFooter.propTypes = {
-    content: PropTypes.element,
+    children: PropTypes.element,
     setShow: PropTypes.func.isRequired
 };
 

@@ -1,23 +1,18 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import HsDialog from "../../atom/dialog/HsDialog";
 import {useForm} from "react-hook-form";
 import HsButton from "../../atom/button/HsButton";
-import HeaderContext from "../../../utils/contexts/HeaderContext";
-import jwtDecode from "jwt-decode";
 import {useAxios} from "../../../utils/hooks/useAxios";
 import HsFormRow from "../../mole/form/HsFormRow";
 import {useAlert} from "../../../utils/hooks/useAlert";
 import HsDialogBody from "../../atom/dialog/HsDialogBody";
 import HsDialogFooter from "../../atom/dialog/HsDialogFooter";
 
-const ProfileDialog = ({show, setShow}) => {
+const ProfileDialog = ({userInfo, show, setShow}) => {
     const {control, handleSubmit, errors, formState, reset} = useForm();
     const {submit, loading} = useAxios()
     const {showAlert} = useAlert();
-    const {state} = useContext(HeaderContext);
-    const {token} = state;
-    const userInfo = jwtDecode(token);
 
     const doConfirm = (data) => {
         showAlert(
