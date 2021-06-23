@@ -4,7 +4,7 @@ import HsFormCol from "../../component/mole/form/HsFormCol";
 import HsCard from "../../component/atom/card/HsCard";
 import styled from "styled-components";
 import TButton from "../../component/atom/button/HsButton";
-import useAxios from "../../utils/hooks/useAxios";
+import {useAxios} from "../../utils/hooks/useAxios";
 import {useHistory} from 'react-router-dom';
 const LoginCard = styled(HsCard)({
     marginTop: '20% !important',

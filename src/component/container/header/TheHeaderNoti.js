@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import HsButton from "../../atom/button/HsButton";
-import useAxios from "../../../utils/hooks/useAxios";
+import {useAxios} from "../../../utils/hooks/useAxios";
 import {Badge, Menu, Popover} from "antd";
 import HsSpinner from "../../atom/progress/HsSpinner";
 

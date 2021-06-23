@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Menu as AntMenu, Layout,} from "antd";
 import styled, {css} from "styled-components";
-import useAxios from "../../utils/hooks/useAxios";
+import {useAxios} from "../../utils/hooks/useAxios";
 import {FaAngleDoubleLeft, GoPrimitiveDot, ImNewTab, IoEnterOutline} from "react-icons/all";
 import {Link, useHistory} from "react-router-dom";
 import {ContextMenu2} from "@blueprintjs/popover2";
@@ -108,6 +108,9 @@ const TheSidebar = ({toggle, setToggle}) => {
     );
 };
 
-TheSidebar.propTypes = {};
+TheSidebar.propTypes = {
+    toggle:PropTypes.bool.isRequired,
+    setToggle:PropTypes.func.isRequired
+};
 
 export default TheSidebar;

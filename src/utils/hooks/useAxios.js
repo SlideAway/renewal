@@ -23,7 +23,7 @@ const appendApi = (config) => {
     config.url = `/api${config.url}`
 }
 
-const useAxios = ({useModal = true, useLoading = false, useApi = true} = {}) => {
+export const useAxios = ({useModal = true, useLoading = false, useApi = true} = {}) => {
     const [loading, setLoading] = useState(useLoading);
     const MySwal = withReactContent(Swal);
 
@@ -69,5 +69,4 @@ useAxios.propTypes = {
     useApi: PropTypes.bool,
     useLoading: PropTypes.bool
 };
-export default useAxios;
 

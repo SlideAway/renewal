@@ -1,8 +1,7 @@
 import React, {useContext} from 'react';
-import PropTypes from 'prop-types';
 import HsButton from "../../atom/button/HsButton";
-import styled, {css} from "styled-components";
-import useAxios from "../../../utils/hooks/useAxios";
+import styled from "styled-components";
+import {useAxios} from "../../../utils/hooks/useAxios";
 import HeaderContext from "../../../utils/contexts/HeaderContext";
 
 
@@ -50,7 +49,5 @@ const TheHeaderExtend = () => {
         </TheHeaderExtendButton>
     );
 };
-
-TheHeaderExtend.propTypes = {};
 
 export default TheHeaderExtend;

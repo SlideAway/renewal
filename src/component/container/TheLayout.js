@@ -4,7 +4,7 @@ import TheContent from "./TheContent";
 import TheHeader from "./TheHeader";
 import styled, {css} from "styled-components";
 import {Layout} from "antd";
-import useAxios from "../../utils/hooks/useAxios";
+import {useAxios} from "../../utils/hooks/useAxios";
 import {useHistory} from "react-router-dom";
 import {ContextMenu2} from "@blueprintjs/popover2";
 import {Menu, MenuItem} from "@blueprintjs/core";
