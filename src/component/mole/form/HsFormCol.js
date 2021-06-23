@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const HsFormCol = ({item, control, errors}) => {
     return (
         <>
-            <Form layout='vertical'>
+            <Form layout='vertical' hidden={item.type === 'hidden'}>
                 <Form.Item label={item.name} required={item.required}>
                 <HsInputCollection item={item} control={control} rules={{
                     required: item.required ? {
