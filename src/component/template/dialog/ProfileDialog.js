@@ -10,12 +10,22 @@ const ProfileForm = ({control, errors}) => {
         <HsFormCol
             control={control}
             errors={errors}
+            item={{id: 'id', name: '사용자 ID', disabled: true}}
+        />
+        <HsFormCol
+            control={control}
+            errors={errors}
             item={{id: 'name', name: '사용자 이름', required: true}}
         />
         <HsFormCol
             control={control}
             errors={errors}
-            item={{id: 'phone', name: '연락처', required: true}}
+            item={{id: 'phone', name: '연락처'}}
+        />
+        <HsFormCol
+            control={control}
+            errors={errors}
+            item={{id: 'email', name: '이메일'}}
         />
     </>
     )
