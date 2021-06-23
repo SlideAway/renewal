@@ -4,7 +4,7 @@ import {Col} from "antd";
 
 const HsCol = (props) => {
     return (
-        <Col>
+        <Col {...props}>
             {props.children}
         </Col>
     );
