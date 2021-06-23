@@ -4,11 +4,12 @@ import {Classes} from "@blueprintjs/core";
 import HsButton from "../button/HsButton";
 import {Space} from "antd";
 
-const HsDialogFooter = ({content, setShow}) => {
+const HsDialogFooter = ({setShow}, props) => {
+    const {children} = props;
     return (
         <div className={Classes.DIALOG_FOOTER}>
             <Space>
-                {content}
+                {children}
                 <HsButton onClick={() => setShow(false)} type='danger'>닫기</HsButton>
             </Space>
         </div>

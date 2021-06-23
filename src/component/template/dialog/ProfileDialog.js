@@ -9,26 +9,8 @@ import useAxios from "../../../utils/hooks/useAxios";
 import HsSpinner from "../../atom/progress/HsSpinner";
 import HsFormRow from "../../mole/form/HsFormRow";
 import {useAlert} from "../../../utils/hooks/useAlert";
-
-const ProfileForm = ({control, errors}) => {
-    return (
-        <>
-            <HsFormRow errors={errors}
-                       control={control}
-                       items={[
-                           {id: 'userId', name: '사용자 ID', disabled: true},
-                           {id: 'userNm', name: '사용자 이름', required: true},
-                           {id: 'userTel', name: '연락처'},
-                           {id: 'userEmail', name: '이메일'},
-                           {id: 'roleCd', type: 'hidden'},
-                           {id: 'userSeq', type: 'hidden'},
-                           {id: 'ipChk', type: 'hidden'},
-                           {id: 'ipAddr', type: 'hidden'},
-                           {id: 'userDesc', type: 'hidden'},
-                       ]}/>
-        </>
-    )
-}
+import HsDialogBody from "../../atom/dialog/HsDialogBody";
+import HsDialogFooter from "../../atom/dialog/HsDialogFooter";
 
 const ProfileDialog = ({show, setShow}) => {
     const {control, handleSubmit, errors, formState, reset} = useForm();
@@ -77,20 +59,35 @@ const ProfileDialog = ({show, setShow}) => {
         <HsDialog
             title='프로필 수정'
             show={show}
-            bodyContent={
-                <HsSpinner loading={loading}>
-                    <ProfileForm control={control} errors={errors}/>
-                </HsSpinner>}
-            footerContent={
-                <HsButton
-                    onClick={handleSubmit(doConfirm)}
-                    disabled={!formState.isDirty}
-                    loading={loading}
-                >
-                    저장
-                </HsButton>}
             setShow={setShow}
-        />
+        >
+            <HsSpinner loading={loading}>
+                <HsDialogBody>
+                    <HsFormRow errors={errors}
+                               control={control}
+                               items={[
+                                   {id: 'userId', name: '사용자 ID', disabled: true},
+                                   {id: 'userNm', name: '사용자 이름', required: true},
+                                   {id: 'userTel', name: '연락처'},
+                                   {id: 'userEmail', name: '이메일'},
+                                   {id: 'roleCd', type: 'hidden'},
+                                   {id: 'userSeq', type: 'hidden'},
+                                   {id: 'ipChk', type: 'hidden'},
+                                   {id: 'ipAddr', type: 'hidden'},
+                                   {id: 'userDesc', type: 'hidden'},
+                               ]}/>
+                </HsDialogBody>
+                <HsDialogFooter setShow={setShow}>
+                    <HsButton
+                        onClick={handleSubmit(doConfirm)}
+                        disabled={!formState.isDirty}
+                        loading={loading}
+                    >
+                        저장
+                    </HsButton>
+                </HsDialogFooter>
+            </HsSpinner>
+        </HsDialog>
     );
 };
 

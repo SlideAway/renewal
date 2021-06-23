@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Dialog} from "@blueprintjs/core";
-import HsDialogBody from "./HsDialogBody";
-import HsDialogFooter from "./HsDialogFooter";
 
-const HsDialog = ({show, setShow, title, bodyContent, footerContent}) => {
-
+const HsDialog = (props) => {
+    const {show, setShow, title, children} = props;
     return (
         <Dialog
             title={title}
@@ -13,24 +11,19 @@ const HsDialog = ({show, setShow, title, bodyContent, footerContent}) => {
             canOutsideClickClose={false}
             onClose={() => setShow(false)}
         >
-            <HsDialogBody content={bodyContent}/>
-            <HsDialogFooter content={footerContent} setShow={setShow} />
+            {children}
         </Dialog>
     );
 };
 
 HsDialog.defaultProps = {
     title:'',
-    bodyContent:<></>,
-    footerContent:<></>
 }
 
 HsDialog.propTypes = {
     show:PropTypes.bool.isRequired,
     setShow:PropTypes.func.isRequired,
     title:PropTypes.string,
-    bodyContent:PropTypes.element,
-    footerContent:PropTypes.element
 };
 
 export default HsDialog;

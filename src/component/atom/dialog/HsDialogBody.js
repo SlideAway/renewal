@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Classes} from "@blueprintjs/core";
 
-const HsDialogBody = ({content}) => {
+const HsDialogBody = (props) => {
+    const {children} = props;
     return (
         <div className={Classes.DIALOG_BODY}>
-            {content}
+            {children}
         </div>
     );
 };
