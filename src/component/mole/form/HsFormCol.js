@@ -7,7 +7,7 @@ const HsFormCol = ({item, control, errors}) => {
     return (
         <>
             <Form layout='vertical'>
-                <Form.Item label={item.name}>
+                <Form.Item label={item.name} required={item.required}>
                 <HsInputCollection item={item} control={control} rules={{
                     required: item.required ? {
                         value: item.required,
