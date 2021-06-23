@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Dialog} from "@blueprintjs/core";
 import HsDialogBody from "./HsDialogBody";
 import HsDialogFooter from "./HsDialogFooter";
 
-const HsDialog = ({show, setShow, title, bodyContent, footerContent, formState}) => {
+const HsDialog = ({show, setShow, title, bodyContent, footerContent}) => {
 
     return (
         <Dialog
@@ -14,7 +14,7 @@ const HsDialog = ({show, setShow, title, bodyContent, footerContent, formState})
             onClose={() => setShow(false)}
         >
             <HsDialogBody content={bodyContent}/>
-            <HsDialogFooter content={footerContent} formState={formState} setShow={setShow} />
+            <HsDialogFooter content={footerContent} setShow={setShow} />
         </Dialog>
     );
 };
