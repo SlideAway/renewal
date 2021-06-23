@@ -1,11 +1,12 @@
 import React from 'react';
-import {CCol} from "@coreui/react";
+import {Col} from "antd";
+
 
 const HsCol = (props) => {
     return (
-        <CCol>
+        <Col>
             {props.children}
-        </CCol>
+        </Col>
     );
 };
 
