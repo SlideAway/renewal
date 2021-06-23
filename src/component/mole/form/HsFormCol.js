@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 import HsCol from "../../atom/layout/HsCol";
 
 export const defaultSize = {
-    xs: 12,
-    sm: 6,
-    md: 5,
-    lg: 4,
-    xl: 3
+    xs: 24,
+    sm: 12,
+    md: 10,
+    lg: 8,
+    xl: 4
 }
 
 export const setGridCol = (item) => {

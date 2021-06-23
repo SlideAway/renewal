@@ -1,7 +1,7 @@
 import React from 'react';
 import {Controller} from "react-hook-form";
 import {Input} from "antd";
-
+import PropTypes from 'prop-types';
 const HsInput = (props) => {
     return (
         <>
@@ -17,6 +17,18 @@ const HsInput = (props) => {
             />
         </>
     );
+};
+
+HsInput.defaultProps = {
+    disabled:false,
+    rules:{}
+}
+
+HsInput.propTypes = {
+    id:PropTypes.string.isRequired,
+    control:PropTypes.object.isRequired,
+    disabled:PropTypes.bool,
+    rules:PropTypes.object
 };
 
 export default HsInput;

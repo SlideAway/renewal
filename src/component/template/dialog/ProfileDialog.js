@@ -9,6 +9,14 @@ import {useAlert} from "../../../utils/hooks/useAlert";
 import HsDialogBody from "../../atom/dialog/HsDialogBody";
 import HsDialogFooter from "../../atom/dialog/HsDialogFooter";
 
+const size = {
+    xl:24,
+    lg:24,
+    md:24,
+    sm:24,
+    xs:24
+}
+
 const ProfileDialog = ({userInfo, show, setShow}) => {
     const {control, handleSubmit, errors, formState, reset} = useForm();
     const {submit, loading} = useAxios()
@@ -60,10 +68,10 @@ const ProfileDialog = ({userInfo, show, setShow}) => {
                 <HsFormRow errors={errors}
                            control={control}
                            items={[
-                               {id: 'userId', name: '사용자 ID', disabled: true},
-                               {id: 'userNm', name: '사용자 이름', required: true},
-                               {id: 'userTel', name: '연락처'},
-                               {id: 'userEmail', name: '이메일'},
+                               {id: 'userId', name: '사용자 ID', disabled: true, size:size},
+                               {id: 'userNm', name: '사용자 이름', required: true, size:size},
+                               {id: 'userTel', name: '연락처', size:size},
+                               {id: 'userEmail', name: '이메일', size:size},
                                {id: 'roleCd', type: 'hidden'},
                                {id: 'userSeq', type: 'hidden'},
                                {id: 'ipChk', type: 'hidden'},

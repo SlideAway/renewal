@@ -1,19 +1,22 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Route, Switch} from "react-router-dom";
 import routes from "../../routes";
 import {Layout} from "antd";
 import styled from "styled-components";
+import ContentContext, {ContentProvider} from "../../utils/contexts/ContentContext";
+
 const {Content} = Layout
 
 const CustomContent = styled(Content)`
-    margin:24px 16px 0;
-    padding:24px;
-    min-height:360px;
+  margin: 24px 16px 0;
+  padding: 24px;
+  min-height: 360px;
 `
 
 const TheContent = () => {
     return (
-        <CustomContent className='site-layout-background'>
+        <ContentProvider>
+            <CustomContent className='site-layout-background'>
                 <Switch>
                     {routes && routes.map((route, idx) => (
                         route.component && (
@@ -29,7 +32,8 @@ const TheContent = () => {
                         )
                     ))}
                 </Switch>
-        </CustomContent>
+            </CustomContent>
+        </ContentProvider>
     );
 };
 

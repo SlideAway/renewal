@@ -9,6 +9,14 @@ import HsDialogFooter from "../../atom/dialog/HsDialogFooter";
 import {useAlert} from "../../../utils/hooks/useAlert";
 import HsButton from "../../atom/button/HsButton";
 
+const size = {
+    xl:24,
+    lg:24,
+    md:24,
+    sm:24,
+    xs:24
+}
+
 const PasswordDialog = ({userInfo, show, setShow}) => {
     const {submit, loading} = useAxios()
     const {control,handleSubmit,errors, formState, reset} = useForm()
@@ -49,9 +57,9 @@ const PasswordDialog = ({userInfo, show, setShow}) => {
                     errors={errors}
                     control={control}
                     items={[
-                        {id:'userPw', name:'기존 비밀번호', type:'password', required:true},
-                        {id:'newPassword', name:'신규 비밀번호', type:'password', required:true},
-                        {id:'newPassword2', name:'신규 비밀번호 확인', type:'password', required:true}
+                        {id:'userPw', name:'기존 비밀번호', type:'password', required:true, size:size},
+                        {id:'newPassword', name:'신규 비밀번호', type:'password', required:true, size:size},
+                        {id:'newPassword2', name:'신규 비밀번호 확인', type:'password', required:true, size:size}
                     ]}
                 />
             </HsDialogBody>
