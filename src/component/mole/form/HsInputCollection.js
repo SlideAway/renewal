@@ -4,6 +4,7 @@ import HsPassword from "../../atom/input/HsPassword";
 
 const HsInputCollection = ({item, rules, control}, props) => {
     switch(item.type) {
+        case 'hidden':
         case undefined:
             return <HsInput {...props} {...item} name={item.id} control={control} rules={rules} />
         case 'password':
