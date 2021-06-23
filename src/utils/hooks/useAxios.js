@@ -3,19 +3,42 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import PropTypes from "prop-types";
+import _ from 'lodash';
 
-const useAxios = ({useModal=true, useLoading=false, useApi=true} = {}) => {
+const convertFormData = (obj) => {
+    const formData = new FormData();
+    Object.keys(obj).forEach(item => formData.append(item, obj[item]));
+    return formData;
+}
+
+const appendToken = (config) => {
+    if (localStorage.getItem('token'))
+        config.headers = {
+            ...config.headers,
+            'X-Auth-Token': localStorage.getItem('token')
+        }
+}
+
+const appendApi = (config) => {
+    config.url = `/api${config.url}`
+}
+
+const useAxios = ({useModal = true, useLoading = false, useApi = true} = {}) => {
     const [loading, setLoading] = useState(useLoading);
     const MySwal = withReactContent(Swal);
 
     const submit = useCallback((config, succHandler, failHandler) => {
-        if (localStorage.getItem('token'))
-            config.headers = {
-                ...config.headers,
-                'X-Auth-Token': localStorage.getItem('token')
-            }
-        if (useApi) config.url = `/api${config.url}`
+        // 전처리 시작
+        // 토큰 추가
+        appendToken(config);
+        // api 문자열 추가
+        if (useApi) appendApi(config)
+        // data를 formData로 변환
+        if (_.isPlainObject(config.data)) config.data = convertFormData(config.data);
+
         setLoading(true)
+
+        // 요청 시작
         axios(config)
             .then(data => {
                 if (succHandler) succHandler(data)
