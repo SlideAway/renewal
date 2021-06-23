@@ -8,8 +8,8 @@ import {useAxios} from "../../utils/hooks/useAxios";
 import {useHistory} from 'react-router-dom';
 const LoginCard = styled(HsCard)({
     marginTop: '20% !important',
-    marginLeft: '30% !important',
-    marginRight: '30% !important'
+    marginLeft: '35% !important',
+    marginRight: '35% !important'
 });
 
 
