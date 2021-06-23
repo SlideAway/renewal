@@ -7,15 +7,30 @@ import HeaderContext from "../../../utils/contexts/HeaderContext";
 import jwtDecode from "jwt-decode";
 import Icons from "../../../assets/icons/Icons";
 
+
+
+const editProfile = () => {
+
+}
+
+const editPassword = () => {
+
+}
+
+
+const doLogout = () => {
+
+}
+
 const ProfileDropdown = (
     <Menu>
-        <Menu.Item icon={<Icons name='ImProfile'/>}>
+        <Menu.Item icon={<Icons name='ImProfile'/>} onClick={editProfile}>
             프로필 수정
         </Menu.Item>
-        <Menu.Item icon={<Icons name='BiKey'/>}>
+        <Menu.Item icon={<Icons name='BiKey'/>} onClick={editPassword}>
             비밀번호 수정
         </Menu.Item>
-        <Menu.Item danger icon={<Icons name='HiOutlineLogout'/>}>
+        <Menu.Item danger icon={<Icons name='HiOutlineLogout'/>} onClick={doLogout}>
             로그아웃
         </Menu.Item>
     </Menu>
@@ -26,6 +41,7 @@ const TheHeaderProfile = () => {
     const {state} = context;
     const {token} = state;
     const decodedToken = token ? jwtDecode(token) : '';
+
     return (
         <>
             <Dropdown
@@ -33,7 +49,7 @@ const TheHeaderProfile = () => {
                 trigger={['click']}
             >
                 <HsButton type='text' icon='AiOutlineUser'>
-                    {decodedToken && decodedToken.aud}
+                    {decodedToken && decodedToken.aud}님
                     <Icons name='BsChevronDown'/>
                 </HsButton>
             </Dropdown>
