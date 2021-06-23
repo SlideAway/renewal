@@ -20,10 +20,10 @@ export const useAlert = () => {
             allowOutsideClick:false,
             allowEscapeKey:true,
             allowEnterKey:true,
-            showConfirmButton:true,
+            showConfirmButton:!!confirmEvent,
             confirmButtonText:'확인',
             preConfirm() {
-                confirmEvent();
+                if(confirmEvent) confirmEvent();
             }
 
 
