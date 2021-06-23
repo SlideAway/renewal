@@ -2,6 +2,7 @@ import React from 'react';
 import HsInputCollection from "./HsInputCollection";
 import HsErrorMessage from "../../atom/error/HsErrorMessage";
 import {Form} from "antd";
+import PropTypes from 'prop-types';
 
 const HsFormCol = ({item, control, errors}) => {
     return (
@@ -27,6 +28,12 @@ const HsFormCol = ({item, control, errors}) => {
             </Form>
         </>
     );
+};
+
+HsFormCol.propTypes = {
+    item:PropTypes.objectOf(PropTypes.string).isRequired,
+    control:PropTypes.object.isRequired,
+    errors:PropTypes.object.isRequired
 };
 
 export default HsFormCol;
