@@ -2,18 +2,22 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Header} from "antd/lib/layout/layout";
 import styled from "styled-components";
 import {AiOutlineMenuUnfold, AiOutlineMenuFold} from "react-icons/ai";
-import jwtDecode from "jwt-decode";
-import moment from "moment";
 import PropTypes from 'prop-types';
 import TheHeaderAuth from "./header/TheHeaderAuth";
 import TheHeaderExtend from "./header/TheHeaderExtend";
 import {ButtonGroup, Divider} from "@blueprintjs/core";
 import TheHeaderProfile from "./header/TheHeaderProfile";
-import HeaderContext, {HeaderProvider} from "../../utils/contexts/HeaderContext";
+import {HeaderProvider} from "../../utils/contexts/HeaderContext";
 import TheHeaderNotification from "./header/TheHeaderNoti";
-
+import {Breadcrumb} from "antd";
+import Icons from "../../assets/icons/Icons";
+import routes from "../../routes";
+import {withRouter} from 'react-router-dom';
 const CustomHeader = styled(Header)`
   padding: 0;
+  & {
+    display:inline-block;
+  }
 
   .trigger {
     margin-left: 10px;
@@ -38,7 +42,8 @@ const ProfileHeader = styled.div`
   //  }
 `
 
-const TheHeader = ({toggle, setToggle}) => {
+const TheHeader = (props) => {
+    const {toggle, setToggle, location} = props;
     const reverseToggle = useCallback(() => {
         setToggle(!toggle);
     }, [toggle])
@@ -51,21 +56,29 @@ const TheHeader = ({toggle, setToggle}) => {
                         className: 'trigger',
                         onClick: reverseToggle
                     })}
-                    <ProfileHeader>
-                        <ButtonGroup minimal>
-                            <TheHeaderAuth/>
-                            <TheHeaderExtend/>
-                            <Divider/>
-                            <TheHeaderProfile/>
-                            <TheHeaderNotification/>
-                        </ButtonGroup>
-                    </ProfileHeader>
+                {/*<Breadcrumb>*/}
+                {/*    <Breadcrumb.Item>*/}
+                {/*        <Icons name='AiOutlineHome'/>*/}
+                {/*    </Breadcrumb.Item>*/}
+                {/*</Breadcrumb>*/}
+                <ProfileHeader>
+                    <ButtonGroup minimal>
+                        <TheHeaderAuth/>
+                        <TheHeaderExtend/>
+                        <Divider/>
+                        <TheHeaderProfile/>
+                        <TheHeaderNotification/>
+                    </ButtonGroup>
+                </ProfileHeader>
                 </CustomHeader>
             </HeaderProvider>
         </>
     );
 };
 
-TheHeader.propTypes = {};
+TheHeader.propTypes = {
+    toggle: PropTypes.bool,
+    setToggle: PropTypes.func
+};
 
-export default TheHeader;
+export default withRouter(TheHeader);
