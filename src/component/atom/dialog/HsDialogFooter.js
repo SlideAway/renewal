@@ -21,7 +21,6 @@ HsDialogFooter.defaultProps = {
 
 HsDialogFooter.propTypes = {
     content: PropTypes.element,
-    formState: PropTypes.object.isRequired,
     setShow: PropTypes.func.isRequired
 };
 
