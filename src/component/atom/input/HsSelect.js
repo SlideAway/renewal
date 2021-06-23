@@ -5,7 +5,7 @@ import {Controller} from "react-hook-form";
 import {Select} from "antd";
 const {Option} = Select;
 const HsSelect = (props) => {
-    const {url, body, control, rules, id} = props;
+    const {url, body, control, rules, id, noHeader, header} = props;
     const {loading, submit} = useAxios({useLoading:true})
     const [options, setOptions] = useState([]);
 
@@ -32,9 +32,9 @@ const HsSelect = (props) => {
                     defaultValue=''
                     render={(innerProps) => (
                         <Select {...innerProps} loading={loading}>
-                            <Option value=''>선택</Option>
+                            {noHeader ? <></> : <Option value=''>{header ? header : '선택'}</Option>}
                             {options.map(item => (
-                                <Option value={item.value}>{item.text}</Option>
+                                <Option value={item.code}>{item.text}</Option>
                                 ))}
                         </Select>
                     )}
@@ -44,11 +44,28 @@ const HsSelect = (props) => {
     else if (body)
         return (
             <>
+                <Controller
+                    name={id}
+                    control={control}
+                    rules={rules}
+                    defaultValue=''
+                    render={(innerProps) => (
+                        <Select {...innerProps} loading={loading}>
+                            {noHeader ? <></> : <Option value=''>{header ? header : '선택'}</Option>}
+                            {body.map(item => (
+                                <Option value={item.code}>{item.text}</Option>
+                            ))}
+                        </Select>
+                    )}
+                />
             </>
         )
     else
         return (
             <>
+                <Select>
+                    {noHeader ? <></> : <Option value=''>{header ? header : '선택'}</Option>}
+                </Select>
             </>
         )
 };
