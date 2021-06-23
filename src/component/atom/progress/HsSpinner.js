@@ -7,16 +7,21 @@ const CustomSpin = styled(Spin)`
     text-align: center;
 `
 
-const HsSpinner = ({loading, children}) => {
+const HsSpinner = (props) => {
+    const {loading, children} = props;
     return (
-        <CustomSpin spinning={loading} tip='loading...' size='large'>
+        <CustomSpin {...props} spinning={loading} tip='loading...' size='large'>
             {children}
         </CustomSpin>
     );
 };
 
+HsSpinner.defaultProps = {
+    loading:false
+}
+
 HsSpinner.propTypes = {
-    
+    loading:PropTypes.bool
 };
 
 export default HsSpinner;
