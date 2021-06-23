@@ -30,10 +30,10 @@ export const setGridCol = (item) => {
     return size.join(' ');
 }
 
-const HsFormCol = ({item, control, errors}) => {
+const HsFormCol = ({item, control, errors, size}) => {
     return (
         <>
-            <HsCol {...defaultSize}>
+            <HsCol {...defaultSize} {...size}>
             <Form layout='vertical' hidden={item.type === 'hidden'}>
                 <Form.Item label={item.name} required={item.required}>
                 <HsInputCollection item={item} control={control} rules={{
@@ -68,7 +68,14 @@ const HsFormCol = ({item, control, errors}) => {
 HsFormCol.propTypes = {
     item:PropTypes.objectOf(PropTypes.string).isRequired,
     control:PropTypes.object.isRequired,
-    errors:PropTypes.object.isRequired
+    errors:PropTypes.object.isRequired,
+    size:PropTypes.shape({
+        xl:PropTypes.number,
+        lg:PropTypes.number,
+        md:PropTypes.number,
+        sm:PropTypes.number,
+        xs:PropTypes.number
+    })
 };
 
 export default HsFormCol;

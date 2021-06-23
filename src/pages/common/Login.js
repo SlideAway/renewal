@@ -7,6 +7,7 @@ import TButton from "../../component/atom/button/HsButton";
 import {useAxios} from "../../utils/hooks/useAxios";
 import {useHistory} from 'react-router-dom';
 import logo from "../../assets/img/logo/hanssak_CI_en1.jpg";
+import HsRow from "../../component/atom/layout/HsRow";
 
 const LoginCard = styled(HsCard)`
   margin-top: 10% !important;
@@ -45,18 +46,24 @@ const Login = () => {
     return (
         <>
             <LoginCard title={<img src={logo} alt="loginLogo"/>}>
-                <HsFormCol item={{
-                    name: 'ID', id: 'username', required: true,
-                    placeholder: 'ID'
-                }}
-                           control={control}
-                           errors={errors}/>
-                <HsFormCol item={{
-                    name: '비밀번호', id: 'password', type: 'password', required: true,
-                    placeholder: 'Password'
-                }}
-                           control={control}
-                           errors={errors}/>
+                <HsRow>
+                    <HsFormCol item={{
+                        name: 'ID', id: 'username', required: true,
+                        placeholder: 'ID',
+                    }}
+                               control={control}
+                               errors={errors}
+                               size={{xl: 24}}
+                    />
+                    <HsFormCol item={{
+                        name: '비밀번호', id: 'password', type: 'password', required: true,
+                        placeholder: 'Password',
+                    }}
+                               control={control}
+                               errors={errors}
+                               size={{xl: 24}}
+                    />
+                </HsRow>
                 <TButton onClick={handleSubmit(onLogin)} loading={loading}>로그인</TButton>
             </LoginCard>
         </>

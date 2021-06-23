@@ -14,6 +14,27 @@ const Users = () => {
                         required: false,
                         url: '/combo/custom/roleInfo',
                     },
+                    {id: 'userId', name: '사용자 ID'},
+                    {id: 'userNm', name: '사용자 이름'},
+                    {
+                        id: 'roleCd', name: '권한', type: 'select',
+                        required: false,
+                        url: '/combo/custom/roleInfo',
+                    },
+                    {id: 'userId', name: '사용자 ID'},
+                    {id: 'userNm', name: '사용자 이름'},
+                    {
+                        id: 'roleCd', name: '권한', type: 'select',
+                        required: false,
+                        url: '/combo/custom/roleInfo',
+                    },
+                    {id: 'userId', name: '사용자 ID'},
+                    {id: 'userNm', name: '사용자 이름'},
+                    {
+                        id: 'roleCd', name: '권한', type: 'select',
+                        required: false,
+                        url: '/combo/custom/roleInfo',
+                    },
                 ]}/>
             </>
 

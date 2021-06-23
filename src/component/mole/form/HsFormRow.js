@@ -8,7 +8,7 @@ const HsFormRow = ({items, control, errors, rowProps}) => {
         <>
             <HsRow {...rowProps}>
             {items.map(item => (
-                <HsFormCol item={item} control={control} errors={errors}/>
+                <HsFormCol item={item} control={control} errors={errors} size={item.size}/>
             ))}
             </HsRow>
         </>
