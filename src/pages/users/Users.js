@@ -1,17 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import SearchForm from "../../component/template/search/SearchForm";
 
-const Users = props => {
+const Users = () => {
 
     return (
-        <div>
+        <>
+            <SearchForm
+                form={[
+                    {id: 'userId', name: '사용자 ID'},
+                    {id: 'userNm', name: '사용자 이름'},
+                    {
+                        id: 'roleCd', name: '권한', type: 'select',
+                        required: false,
+                        url: '/combo/custom/roleInfo',
+                    },
+                ]}/>
+            </>
 
-        </div>
     );
-};
-
-Users.propTypes = {
-
 };
 
 export default Users;
