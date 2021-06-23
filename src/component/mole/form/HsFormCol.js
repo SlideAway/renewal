@@ -5,6 +5,7 @@ import {Form} from "antd";
 import PropTypes from 'prop-types';
 
 const HsFormCol = ({item, control, errors}) => {
+
     return (
         <>
             <Form layout='vertical' hidden={item.type === 'hidden'}>
@@ -12,7 +13,7 @@ const HsFormCol = ({item, control, errors}) => {
                 <HsInputCollection item={item} control={control} rules={{
                     required: item.required ? {
                         value: item.required,
-                        message: `${item.name}은 필수값입니다. `
+                        message: `${item.name}은(는) 필수값입니다. `
                     } : null,
                     max: item.max ? {
                         value: item.max,
@@ -21,6 +22,13 @@ const HsFormCol = ({item, control, errors}) => {
                     min: item.min ? {
                         value: item.min,
                         message: `${item.name}의 최댓값은 ${item.min} 입니다. `
+                    } : null,
+                    pattern: item.type === 'password' ? {
+                        value:'',
+                        message:''
+                    } : item.regex ? {
+                        value:item.regex,
+                        message:`${item.name}이 형식에 맞지 않습니다. `
                     } : null
                 }}/>
                 {errors[item.id] ? <HsErrorMessage message={errors[item.id].message}/> : <></>}
