@@ -6,8 +6,8 @@ import {Form} from "antd";
 const HsFormCol = ({item, control, errors}) => {
     return (
         <>
-            <Form>
-                <Form.Item label={item.label}>
+            <Form layout='vertical'>
+                <Form.Item label={item.name}>
                 <HsInputCollection item={item} control={control} rules={{
                     required: item.required ? {
                         value: item.required,
