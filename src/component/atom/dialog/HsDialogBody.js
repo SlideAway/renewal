@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Classes} from "@blueprintjs/core";
 
-const HsDialogBody = props => {
+const HsDialogBody = ({content}) => {
     return (
-        <div>
-
+        <div className={Classes.DIALOG_BODY}>
+            {content}
         </div>
     );
 };
 
-HsDialogBody.propTypes = {
+HsDialogBody.defaultProps = {
+    content:<></>
+}
 
+HsDialogBody.propTypes = {
+    content:PropTypes.element
 };
 
 export default HsDialogBody;
