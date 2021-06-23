@@ -5,33 +5,11 @@ import HeaderContext from "../../../utils/contexts/HeaderContext";
 import jwtDecode from "jwt-decode";
 import Icons from "../../../assets/icons/Icons";
 import ProfileDialog from "../../template/dialog/ProfileDialog";
-
-const editProfile = () => {
-
-}
-
-const editPassword = () => {
-
-}
-
+import PasswordDialog from "../../template/dialog/PasswordDialog";
 
 const doLogout = () => {
 
 }
-
-const ProfileDropdown = (setShowProfile, setShowPassword) => (
-    <Menu>
-        <Menu.Item icon={<Icons name='ImProfile'/>} onClick={() => setShowProfile(true)}>
-            프로필 수정
-        </Menu.Item>
-        <Menu.Item icon={<Icons name='BiKey'/>} onClick={() => setShowPassword(true)}>
-            비밀번호 수정
-        </Menu.Item>
-        <Menu.Item danger icon={<Icons name='HiOutlineLogout'/>} onClick={doLogout}>
-            로그아웃
-        </Menu.Item>
-    </Menu>
-);
 
 const TheHeaderProfile = () => {
     const context = useContext(HeaderContext);
@@ -41,10 +19,23 @@ const TheHeaderProfile = () => {
     const [showProfile, setShowProfile] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
+    const ProfileDropdown = () => (
+        <Menu>
+            <Menu.Item icon={<Icons name='ImProfile'/>} onClick={() => setShowProfile(true)}>
+                프로필 수정
+            </Menu.Item>
+            <Menu.Item icon={<Icons name='BiKey'/>} onClick={() => setShowPassword(true)}>
+                비밀번호 수정
+            </Menu.Item>
+            <Menu.Item danger icon={<Icons name='HiOutlineLogout'/>} onClick={doLogout}>
+                로그아웃
+            </Menu.Item>
+        </Menu>
+    );
+
     return (
         <>
             <Dropdown
-
                 overlay={ProfileDropdown(setShowProfile, setShowPassword)}
                 trigger={['click']}
             >
@@ -54,10 +45,9 @@ const TheHeaderProfile = () => {
                 </HsButton>
             </Dropdown>
             <ProfileDialog userInfo={decodedToken} show={showProfile} setShow={setShowProfile}/>
+            <PasswordDialog show={showPassword} setShow={setShowPassword} userInfo={decodedToken}/>
         </>
     );
 };
-
-TheHeaderProfile.propTypes = {};
 
 export default TheHeaderProfile;
