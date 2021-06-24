@@ -3,15 +3,18 @@ import PropTypes from 'prop-types';
 import Grid from "@toast-ui/react-grid";
 
 const ToastGrid = (props) => {
-    const {context, columns, data} = props;
-    console.log(data.content);
+    const {context, columns, data, gridController} = props;
+    const {state} = useContext(context);
+    const {gridData} = state;
+    
     return (
         <>
             <Grid
                 columns={columns}
-                data={data && data.content}
+                data={gridData && gridData.content}
                 rowHeight={25}
-                bodyHeight={100}
+                minRowHeight={25}
+                bodyHeight={200}
                 virtualScrolling={true}
                 heightResizable={true}
                 rowHeaders={['rowNum']}
