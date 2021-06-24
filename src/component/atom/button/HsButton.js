@@ -21,7 +21,8 @@ HsButton.propTypes = {
     type:PropTypes.oneOf(['primary', 'default', 'danger', 'text']),
     shape:PropTypes.oneOf(['circle', 'round']),
     loading:PropTypes.bool,
-    disabled:PropTypes.bool
+    disabled:PropTypes.bool,
+    onClick:PropTypes.func
 };
 
 HsButton.defaultProps = {
@@ -30,7 +31,8 @@ HsButton.defaultProps = {
     size:'default',
     type:'default',
     loading:false,
-    disabled:false
+    disabled:false,
+    onClick:() => {}
 }
 
 export default HsButton;

@@ -9,7 +9,7 @@ const {Content} = Layout
 
 const CustomContent = styled(Content)`
   margin: 24px 16px 0;
-  padding: 24px;
+  padding: 12px;
   height: 100%;
   color:#f0f2f5;
 `
