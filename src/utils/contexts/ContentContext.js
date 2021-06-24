@@ -3,24 +3,27 @@ import {withRouter} from 'react-router-dom';
 
 const ContentContext = createContext({
     state : {
-        gridData:{}
+        gridData:{},
+        loading:false
     },
     actions : {
-        setGridData:() => {}
+        setGridData:() => {},
+        setLoading:() => {}
     }
 });
 
 export const ContentProvider = ({children}) => {
     const {pathname} = window.location;
     const [gridData, setGridData] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setGridData({})
     }, [pathname])
 
     const value = {
-        state:{gridData},
-        actions:{setGridData}
+        state:{gridData, loading},
+        actions:{setGridData, setLoading}
     }
     return (
         <ContentContext.Provider value={value}>
