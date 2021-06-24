@@ -14,7 +14,7 @@ import HsSpinner from "../atom/progress/HsSpinner";
 
 const RootLayout = styled(Layout)`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: auto;
 
   .site-layout-background {

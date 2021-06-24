@@ -10,13 +10,14 @@ const {Content} = Layout
 const CustomContent = styled(Content)`
   margin: 24px 16px 0;
   padding: 24px;
-  min-height: 360px;
+  height: 100%;
+  color:#f0f2f5;
 `
 
 const TheContent = () => {
     return (
         <ContentProvider>
-            <CustomContent className='site-layout-background'>
+            <CustomContent>
                 <Switch>
                     {routes && routes.map((route, idx) => (
                         route.component && (
