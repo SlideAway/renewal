@@ -1,12 +1,17 @@
 import React from 'react';
 import {Row} from "antd";
 import PropTypes from 'prop-types';
+import styled from "styled-components";
+
+const CustomRow = styled(Row)`
+    margin-bottom:10px;
+`
 
 const HsRow = (props) => {
     return (
-        <Row {...props}>
+        <CustomRow {...props}>
             {props.children}
-        </Row>
+        </CustomRow>
     );
 };
 
