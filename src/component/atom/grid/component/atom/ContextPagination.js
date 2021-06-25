@@ -9,7 +9,9 @@ const ContextPagination = props => {
     const {actions, state} = useContext(context);
     const {gridData, pageRequest} = state;
     const {page} = gridData;
-    const {setPageRequest, setLoading} = actions
+    const {setPageRequest, setLoading} = actions;
+
+    const showTotal = (number) => `총 데이터 수 : ${number}`
 
     const onChange = (page, size) => {
         setLoading(true)
@@ -34,6 +36,7 @@ const ContextPagination = props => {
                         pageSize={page && page.size ? page && page.size : 10}
                         total={page && page.totalElements}
                         onChange={onChange}
+                        showTotal={showTotal}
                     />
                 </HsCol>
             </HsRow>

@@ -10,6 +10,7 @@ import '@inovua/reactdatagrid-community/theme/pink-light.css';
 import {DataGridSettings} from './DataGridSettings'
 import HsSpinner from "../progress/HsSpinner";
 import ContextPagination from "./component/atom/ContextPagination";
+import _ from "lodash";
 
 const {rowHeight, columnHeight, realColumnHeight} = DataGridSettings
 
@@ -25,7 +26,12 @@ const setColumns = (columns) => columns.map(item => {
 });
 
 // grid 데이터 사전설정
-const setRows = (rows, pageRequest) => rows.map((item, index) => {
+const setRows = (rows, pageInfo) => rows.map((item, index) => {
+    if(!_.isEmpty(pageInfo)) {
+        const page = pageInfo.number;
+        const idx = index+1;
+        item.index = (page*pageInfo.size) + idx;
+    }
     item.rowIndex = index;
     return item;
 })
@@ -105,14 +111,14 @@ const DataGrid = props => {
         })
     }, [])
 
-
+    if(gridData)
     return (
         <>
         <HsSpinner loading={loading}>
             <ReactDataGrid
                 idProperty='rowIndex'
                 columns={setColumns(columns)}
-                dataSource={setRows(gridData && gridData.content ? gridData.content : [], pageRequest)}
+                dataSource={setRows(gridData && gridData.content ? gridData.content : [], gridData && gridData.page)}
                 onSortInfoChange={onChangeSort}
                 sortInfo={sortInfo}
                 rowHeight={rowHeight}
@@ -130,6 +136,7 @@ const DataGrid = props => {
         </HsSpinner>
         </>
     );
+    return <HsSpinner loading={loading}/>
 };
 
 DataGrid.defaultProps = {
