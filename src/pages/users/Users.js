@@ -10,11 +10,13 @@ import HsTab from "../../component/atom/layout/HsTab";
 import HsCollapse from "../../component/atom/layout/HsCollapse";
 import UserInfo from "./UsersTab/UserInfo";
 import UserConnHis from "./UsersTab/UserConnHis";
+import DataGrid from "../../component/atom/grid/DataGrid";
+import ContextAgGrid from "../../component/atom/grid/ContextAgGrid";
 
 const columns = [
-    {name: 'userId', header: '사용자 ID'},
-    {name: 'userNm', header: '사용자 이름'},
-    {name: 'roleNm', header: '사용자 권한'},
+    {name: 'userId', header: '사용자 ID', pinned: 'left'},
+    {name: 'userNm', header: '사용자 이름', pinned: 'left'},
+    {name: 'roleNm', header: '사용자 권한', pinned: 'left'},
     {name: 'ipChkNm', header: 'IP검사 여부'},
     {name: 'ipAddr', header: 'IP주소'},
     {name: 'userDesc', header: '비고'}
@@ -31,19 +33,13 @@ const searchFilter = [
 ]
 
 const TabElement = [
-    {element:<UserInfo/>, title:'사용자 정보'},
-    {element:<UserConnHis/>, title:'사용자 접속 기록'}
+    {element: <UserInfo/>, title: '사용자 정보'},
+    {element: <UserConnHis/>, title: '사용자 접속 기록'}
 ]
 
 
 const Users = () => {
-    const gridApi = useRef(null);
     const [collapse, setCollapse] = useState(false);
-
-    useEffect(() => {
-        console.log(gridApi)
-    }, [gridApi])
-
 
     const addUser = () => {
         setCollapse(true)
@@ -56,7 +52,10 @@ const Users = () => {
 
     const clickUser = (data) => {
         setCollapse(true)
-        console.log(data)
+        // (data.links.reduce((obj, item) => {
+        //     obj[item.rel] = item;
+        //     return obj;
+        // }, {}));
     }
 
     return (
@@ -68,15 +67,15 @@ const Users = () => {
                             url='/users'
                             options={optionButtons}
                             context={ContentContext}
-                            form={searchFilter}/>
+                            form={searchFilter}
+                        />
                     </HsCol>
                 </HsRow>
                 <HsRow>
                     <HsCol xs={24}>
-                        <ToastGrid
+                        <DataGrid
                             index
                             context={ContentContext}
-                            gridController={gridApi}
                             columns={columns}
                             onClick={clickUser}
                         />

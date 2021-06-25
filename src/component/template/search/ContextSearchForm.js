@@ -16,6 +16,7 @@ const ContextSearchForm = (props) => {
     const {submit, loading} = useAxios();
     const {errors, control, handleSubmit, reset} = useForm();
     const {actions, state} = useContext(context);
+    const {pageRequest} = state;
     const {setGridData, setLoading} = actions
 
     const doSearch = (data) => {
@@ -23,18 +24,19 @@ const ContextSearchForm = (props) => {
             url:url.includes('?') ? url+qs.stringify(data) : `${url}?${qs.stringify(data)}`,
             method:'get'
         };
+        config.url = config.url + '&' + qs.stringify(pageRequest, {encode:false});
         submit(config, (res) => {
             setGridData(res && res.data.data);
         })
     }
 
     useEffect(() => {
-        handleSubmit(doSearch)();
-    }, [])
-
-    useEffect(() => {
         setLoading(loading);
     }, [loading])
+
+    useEffect(() => {
+        handleSubmit(doSearch)();
+    }, [pageRequest])
 
     return (
         <>

@@ -4,10 +4,12 @@ import {withRouter} from 'react-router-dom';
 const ContentContext = createContext({
     state : {
         gridData:{},
+        pageRequest:{},
         loading:false
     },
     actions : {
         setGridData:() => {},
+        setPageRequest:() => {},
         setLoading:() => {}
     }
 });
@@ -15,6 +17,7 @@ const ContentContext = createContext({
 export const ContentProvider = ({children}) => {
     const {pathname} = window.location;
     const [gridData, setGridData] = useState({});
+    const [pageRequest, setPageRequest] = useState({});
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -22,8 +25,8 @@ export const ContentProvider = ({children}) => {
     }, [pathname])
 
     const value = {
-        state:{gridData, loading},
-        actions:{setGridData, setLoading}
+        state:{gridData, loading, pageRequest},
+        actions:{setGridData, setLoading, setPageRequest}
     }
     return (
         <ContentContext.Provider value={value}>

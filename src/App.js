@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import './assets/scss/index.css';
-import 'tui-grid/dist/tui-grid.css'
+// import 'tui-grid/dist/tui-grid.css'
 import 'antd/dist/antd.css';
 import '@blueprintjs/popover2/lib/css/blueprint-popover2.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
