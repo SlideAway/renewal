@@ -15,7 +15,7 @@ import _ from "lodash";
 const {rowHeight, columnHeight, realColumnHeight} = DataGridSettings
 
 const numberColumn = {
-    name:'index', header:'No.', width:80
+    name: 'index', header: 'No.', width: 80
 }
 
 
@@ -27,10 +27,10 @@ const setColumns = (columns) => columns.map(item => {
 
 // grid 데이터 사전설정
 const setRows = (rows, pageInfo) => rows.map((item, index) => {
-    if(!_.isEmpty(pageInfo)) {
+    if (!_.isEmpty(pageInfo)) {
         const page = pageInfo.number;
-        const idx = index+1;
-        item.index = (page*pageInfo.size) + idx;
+        const idx = index + 1;
+        item.index = (page * pageInfo.size) + idx;
     }
     item.rowIndex = index;
     return item;
@@ -58,92 +58,102 @@ const DataGrid = props => {
         }
 
         //정렬 효과 세팅
-        if (pageRequest && pageRequest.sort) {
-            const [name, type] = pageRequest.sort.split(',');
-            const tempSortInfo = {}
-            switch (type) {
-                case 'asc':
-                    tempSortInfo.dir = 1;
+        // if (pageRequest && pageRequest.sort) {
+        //     const [name, type] = pageRequest.sort.split(',');
+        //     const tempSortInfo = {}
+        //     switch (type) {
+        //         case 'asc':
+        //             tempSortInfo.dir = 1;
+        //             break;
+        //         case 'desc':
+        //             tempSortInfo.dir = -1;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        //     if (tempSortInfo.dir) {
+        //         setSortInfo({
+        //             ...tempSortInfo,
+        //             name: name,
+        //             id: name
+        //         })
+        //     } else {
+        //         setSortInfo(null)
+        //     }
+        // }
+    }, [gridData])
+
+    useEffect(() => {
+        let dir ='';
+        let name = '';
+        if(sortInfo) {
+            name = sortInfo.name
+            switch (sortInfo && sortInfo.dir) {
+                case -1:
+                    dir = 'desc';
                     break;
-                case 'desc':
-                    tempSortInfo.dir = -1;
+                case 1:
+                    dir = 'asc';
                     break;
                 default:
                     break;
             }
-            if (tempSortInfo.dir) {
-                setSortInfo({
-                    ...tempSortInfo,
-                    name: name,
-                    id: name
-                })
-            } else {
-                setSortInfo(null)
-            }
         }
-    }, [gridData])
+
+        const currentPageInfo = pageRequest && pageRequest.sort
+        if ((currentPageInfo && currentPageInfo.split(',')[1]) !== dir) {
+            setPageRequest({
+                ...pageRequest,
+                sort: `${name},${dir}`
+            })
+        } else setPageRequest({...pageRequest})
+    }, [sortInfo])
 
     // row 클릭
     const onRowSelect = useCallback((e) => {
-        console.log(e)
         setSelected(e.rowIndex)
         onClick(e && e.data);
     }, [onClick])
 
     // 컬럼 클릭
     const onChangeSort = useCallback(e => {
-        setLoading(true)
-        let type = ''
-        const name = e && e.name ? e.name : ''
-        switch (e && e.dir) {
-            case 1: // 오름차순
-                type = 'asc'
-                break;
-            case -1: // 내림차순
-                type = 'desc'
-                break;
-            default: // 기본값
-                break;
-        }
-        setPageRequest({
-            ...pageRequest,
-            sort: `${name},${type}`
-        })
+        setSortInfo(e);
     }, [])
 
-    if(gridData)
-    return (
-        <>
-        <HsSpinner loading={loading}>
-            <ReactDataGrid
-                idProperty='rowIndex'
-                columns={setColumns(columns)}
-                dataSource={setRows(gridData && gridData.content ? gridData.content : [], gridData && gridData.page)}
-                onSortInfoChange={onChangeSort}
-                sortInfo={sortInfo}
-                rowHeight={rowHeight}
-                headerHeight={columnHeight}
-                showZebraRows={false}
-                style={{height: height}}
-                nativeScroll={false}
-                defaultSelected={selected}
-                // onSelectionChange={onRowSelect}
-                showColumnMenuSortOptions={false}
-                showColumnMenuLockOptions={false}
-                onRowClick={onRowSelect}
-            />
-            <ContextPagination context={context}/>
-        </HsSpinner>
-        </>
-    );
+    if (gridData)
+        return (
+            <>
+                <HsSpinner loading={loading}>
+                    <ReactDataGrid
+                        idProperty='rowIndex'
+                        columns={setColumns(columns)}
+                        dataSource={setRows(gridData && gridData.content ? gridData.content : [], gridData && gridData.page)}
+                        onSortInfoChange={onChangeSort}
+                        sortInfo={sortInfo}
+                        rowHeight={rowHeight}
+                        headerHeight={columnHeight}
+                        showZebraRows={false}
+                        style={{height: height}}
+                        nativeScroll={false}
+                        defaultSelected={selected}
+                        // onSelectionChange={onRowSelect}
+                        showColumnMenuSortOptions={false}
+                        showColumnMenuLockOptions={false}
+                        onRowClick={onRowSelect}
+                    />
+                    <ContextPagination context={context}/>
+                </HsSpinner>
+            </>
+        );
     return <HsSpinner loading={loading}/>
 };
 
 DataGrid.defaultProps = {
-    onClick: () => {},
+    onClick: () => {
+    },
     index: false,
     check: false,
-    pagination:true
+    pagination: true
 }
 
 DataGrid.propTypes = {
@@ -156,7 +166,7 @@ DataGrid.propTypes = {
         type: PropTypes.string,
     })).isRequired,
     onClick: PropTypes.func,
-    pagination:PropTypes.bool
+    pagination: PropTypes.bool
 };
 
 export default DataGrid;
