@@ -84,29 +84,31 @@ const DataGrid = props => {
     }, [gridData])
 
     useEffect(() => {
-        let dir ='';
-        let name = '';
-        if(sortInfo) {
-            name = sortInfo.name
-            switch (sortInfo && sortInfo.dir) {
-                case -1:
-                    dir = 'desc';
-                    break;
-                case 1:
-                    dir = 'asc';
-                    break;
-                default:
-                    break;
+        return () => {
+            let dir = '';
+            let name = '';
+            if (sortInfo) {
+                name = sortInfo.name
+                switch (sortInfo && sortInfo.dir) {
+                    case -1:
+                        dir = 'desc';
+                        break;
+                    case 1:
+                        dir = 'asc';
+                        break;
+                    default:
+                        break;
+                }
             }
-        }
 
-        const currentPageInfo = pageRequest && pageRequest.sort
-        if ((currentPageInfo && currentPageInfo.split(',')[1]) !== dir) {
-            setPageRequest({
-                ...pageRequest,
-                sort: `${name},${dir}`
-            })
-        } else setPageRequest({...pageRequest})
+            const currentPageInfo = pageRequest && pageRequest.sort
+            if ((currentPageInfo && currentPageInfo.split(',')[1]) !== dir) {
+                setPageRequest({
+                    ...pageRequest,
+                    sort: `${name},${dir}`
+                })
+            } else setPageRequest({...pageRequest})
+        }
     }, [sortInfo])
 
     // row 클릭

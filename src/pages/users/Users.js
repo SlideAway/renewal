@@ -52,10 +52,10 @@ const Users = () => {
 
     const clickUser = (data) => {
         setCollapse(true)
-        // (data.links.reduce((obj, item) => {
-        //     obj[item.rel] = item;
-        //     return obj;
-        // }, {}));
+        console.log((data.links.reduce((obj, item) => {
+            obj[item.rel] = item;
+            return obj;
+        }, {})));
     }
 
     return (

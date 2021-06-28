@@ -16,7 +16,7 @@ const HsFormRow = ({items, control, errors, rowProps}) => {
 };
 
 HsFormRow.propTypes = {
-    items:PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+    items:PropTypes.arrayOf(PropTypes.shape({HsFormCol}.propTypes)).isRequired,
     control:PropTypes.object.isRequired,
     errors:PropTypes.object.isRequired,
     rowProps:PropTypes.object
