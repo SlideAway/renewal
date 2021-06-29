@@ -24,7 +24,7 @@ const Login = () => {
     const {loading, submit} = useAxios();
     const history = useHistory();
 
-    window.addEventListener('keypress', (e) => {
+    document.addEventListener('keypress', (e) => {
         if (e.key === 'Enter')
             handleSubmit(onLogin)();
     })
